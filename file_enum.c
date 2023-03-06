@@ -1,11 +1,12 @@
-/* Chapter 3. Windows lsW file list command. */
-/* lsW[options][files]
+/* 
+	Compile with: gcc -o Man file_enum.c
+	Run with Man[options][files]
 	List the attributes of one or more files.
 	Options:
 		-R	recursive
 		-l	longList listing(size and time of modification)
 			Depending on the ProcessItem function, this will
-			also list the owner and permissions(See Chapter 5 - security). */
+			also list the owner and permissions. */
 
 /* This program illustrates:
 		1.	Search handles and directory traversal
@@ -15,7 +16,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* BEGIN BOILERPLATE CODE */
 
-#include "INCLUDE\Everything.h"
+#include "INCLUDE/Everything.h"
 
 BOOL TraverseDirectory(LPTSTR, LPTSTR, DWORD, LPBOOL);
 DWORD FileType(LPWIN32_FIND_DATA);
@@ -218,8 +219,7 @@ DWORD Options (int argc, LPCTSTR argv [], LPCTSTR OptStr, ...)
 				&& iFlag < (int)_tcslen (OptStr)) {
 		*pFlag = FALSE;
 		for (iArg = 1; !(*pFlag) && iArg < argc && argv [iArg] [0] == _T('-'); iArg++)
-			*pFlag = _memtchr (argv [iArg], OptStr [iFlag],
-					_tcslen (argv [iArg])) != NULL;
+			*pFlag = _memtchr (argv [iArg], OptStr [iFlag], _tcslen (argv [iArg])) != NULL;
 		iFlag++;
 	}
 
